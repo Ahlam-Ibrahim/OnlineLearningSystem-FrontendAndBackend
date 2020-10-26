@@ -1,0 +1,235 @@
+<div id="preloader-active">
+    <div class="preloader d-flex align-items-center justify-content-center">
+        <div class="preloader-inner position-relative">
+            <div class="preloader-circle"></div>
+            <div class="preloader-img pere-text">
+                <img src="assets/img/logo/loder.png" alt="">
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Preloader Start -->
+<!-- Header Start -->
+<div class="header-area header-transparent">
+    <div class="main-header ">
+        <div class="header-bottom  header-sticky">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <!-- Logo -->
+                    <div class="col-xl-2 col-lg-2">
+                        <div class="logo">
+                            <a href="index"><img src="assets/img/logo/logo.png" alt=""></a>
+                        </div>
+                    </div>
+                    <div class="col-xl-10 col-lg-10">
+                        <div class="menu-wrapper d-flex align-items-center justify-content-end">
+                            <!-- Main-menu -->
+                            <div class="main-menu d-none d-lg-block">
+                                <nav>
+                                    <ul id="navigation">                                                                                          
+                                        <li class="active" ><a href="index">Home</a></li>
+                                        <li><a href="category">Category</a></li>
+                                        <li><a href="course">Your Course</a></li>
+                                        <li><a href="profile">Your Profile</a></li>
+                                        <!-- <li><a href="about">About</a></li>
+                                        <li><a href="#">Blog</a>
+                                            <ul class="submenu">
+                                                <li><a href="blog">Blog</a></li>
+                                                <li><a href="blog_details">Blog Details</a></li>
+                                                <li><a href="elements">Element</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="contact">Contact</a></li> -->
+                                        <!-- Button -->
+                                        <li class="button-header margin-left "><a href="registration" class="btn">Join</a></li>
+                                        <li class="button-header"><a href="login" class="btn btn3">Log in</a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div> 
+                    <!-- Mobile Menu -->
+                    <div class="col-12">
+                        <div class="mobile_menu d-block d-lg-none"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Header End -->
+
+<main>
+    <section class="slider-area slider-area2">
+        <div class="slider-active">
+            <!-- Single Slider -->
+            <div class="single-slider slider-height2">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-8 col-lg-11 col-md-12">
+                            <div class="hero__caption hero__caption2">
+                                <h1 data-animation="bounceIn" data-delay="0.2s">Category</h1>
+                                <!-- breadcrumb Start-->
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="index">Home</a></li>
+                                        <li class="breadcrumb-item"><a href="category">Category</a></li> 
+                                    </ol>
+                                </nav>
+                                <!-- breadcrumb End -->
+                            </div>
+                        </div>
+                    </div>
+                </div>          
+            </div>
+        </div>
+    </section>
+
+    <section>
+    
+    <div class="topic-area section-padding40">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-7 col-lg-8">
+                    <div class="section-tittle text-center mb-55">
+                        <h2>Explore top subjects</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-md-4 col-sm-6" *ngFor="let category of loadedCategories">
+                    <div class="single-topic text-center mb-30">
+                        <div class="topic-img">
+                            <img src="assets/img/gallery/topic1.png" alt="">
+                            <!-- [src]="category.photoPath"
+                            error msg: not allowed to use local resources? -->
+                            <div class="topic-content-box">
+                                <div class="topic-content">
+                                    <h3><a href="">{{ category.title }}</a></h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-xl-12">
+                    <div class="section-tittle text-center mt-20">
+                        <a href="category" class="border-btn">View More Subjects</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    
+    <div class="topic-area section-padding40">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-7 col-lg-2">
+                    <div class="section-tittle text-center mb-55">
+                        <h2>Our featured courses</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                
+               
+                <div class="col-lg-4 col-md-6 col-sm-6 ml-1" *ngFor="let course of loadedCourses; let i = index">
+                    <div class="properties pb-20">
+                        <div class="properties__card">
+                            <div class="">
+                                <a href="#"><img src="assets/img/gallery/featured2.png" alt=""></a>
+                            </div>
+                            <div class="properties__caption">
+                                    <!-- {{GetAllCategoriesOfACourse(course.id)}}
+                                <div *ngFor="let category of CategoriesOfACourse">
+                                {{ category.title }}
+                                </div> -->
+                                <h3><a href="#">{{ course.title }}</a></h3>
+                                <p>{{ course.description }} </p>
+                                <div class="properties__footer d-flex justify-content-between align-items-center">
+                                        <p><span>Duration: </span>{{ course.duration }} <span> hours</span></p>
+                                    <div class="price">
+                                        <span> ${{ course.price }}</span>
+                                    </div>
+                                </div>
+                                <div class="properties__footer d-flex justify-content-between align-items-center">
+                                    <p><span>Location: </span>
+                                    <span *ngIf="course.location == 1"> Online </span>
+                                    <span *ngIf="course.location == 2"> Offline </span>
+                                    <span *ngIf="course.location == 3"> Recorded </span></p>
+                            </div>
+                                <a href="course" class="border-btn border-btn2">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Courses area start -->
+</main>
+
+
+
+
+
+
+<footer>
+    <div class="footer-wrappper footer-bg">
+       <!-- Footer Start-->
+       <div class="footer-area pt-30">
+           <div class="container">
+               <div class="row justify-content-between">
+                   <div class="col-xl-4 col-lg-5 col-md-4 col-sm-6">
+                       <div class="single-footer-caption">
+                           <div class="single-footer-caption">
+                               <!-- logo -->
+                               <div class="footer-logo">
+                                   <a href="index"><img src="assets/img/logo/logo2_footer.png" alt=""></a>
+                               </div>
+                               <div class="footer-tittle">
+                                   <div class="footer-pera">
+                                       <p>The automated process starts as soon as your clothes go into the machine.</p>
+                                   </div>
+                               </div>
+                               <!-- social -->
+                               <div class="footer-social">
+                                   <a href="#"><i class="fab fa-twitter"></i></a>
+                                   <a href="https://bit.ly/sai4ull"><i class="fab fa-facebook-f"></i></a>
+                                   <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+                   
+               </div>
+           </div>
+       </div>
+       <!-- footer-bottom area -->
+       <div class="footer-bottom-area">
+           <div class="container">
+               <div class="">
+                   <div class="row d-flex align-items-center">
+                       <div class="col-xl-12 ">
+                           <div class="footer-copy-right text-center">
+                               <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                 Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                                 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </div>
+         <!-- Footer End-->
+     </div>
+   </footer>
+  <div id="back-top" >
+    <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
+</div>

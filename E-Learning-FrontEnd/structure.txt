@@ -1,0 +1,38 @@
+● src
++---● app
+|   +--● user
+|   |  |--user.component.ts|.html
+|   |  +--● student
+|   |  |  |--student.component.ts|.html
+|   |  +--● registration
+|   |  |  |--registration.component.ts|.html
+|   |  +--● login
+|   |     |--login.component.ts|.html
+|   |  
+|   +--● home
+|   |  |--home.component.ts|.html
+|   +--● forbidden
+|   |  |--forbidden.component.ts|.html
+|   |
+|   +--● category
+|   |  |--category.component.ts|.html
+|   |   +--● course
+|   |   |  |--course.component.ts|.html
+|   |   |  +--● section
+|   |   |  |  |--section.component.ts|.html
+|   |   |  |  +--● video
+|   |   |  |  |  |--video.component.ts|.html
+|   |   |  +--● status
+|   |   |     |--status.component.ts|.html
+|   |   
+|   +--● shared
+|   |  |--user.service.ts
+|   |  
+|   +--● auth
+|   |  |--auth.guard.ts
+|   |  |--auth.interceptor.ts
+|   |
+|   |--app.module.ts
+|   |--app-routing.module.ts (route configs.)
+|
+|--index.html (cdn path for bootstrap)
