@@ -22,7 +22,10 @@ using Microsoft.IdentityModel.Tokens;
 using OnlineLearningSystem.Models;
 using OnlineLearningSystem.Services;
 using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
+using NETCore.MailKit;
 using System.Text;
+using NETCore.MailKit.Extensions;
+using NETCore.MailKit.Infrastructure.Internal;
 
 namespace OnlineLearningSystem
 {
@@ -67,7 +70,7 @@ namespace OnlineLearningSystem
             services.AddScoped<IVideoRepository, VideoRepository>();
             services.AddScoped<IEnrollmentRepository, EnrollmentRepository>();
 
-            services.AddIdentity<ApplicationUser, IdentityRole>()
+            services.AddIdentity<ApplicationUser, IdentityRole>() 
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders().AddRoles<IdentityRole>();
 
@@ -80,7 +83,7 @@ namespace OnlineLearningSystem
                 options.Password.RequireLowercase = false;
                 options.Password.RequireUppercase = false;
                 options.Password.RequiredLength = 5;
-
+                options.SignIn.RequireConfirmedEmail = true; 
             });
 
             //Jwt Authentication
@@ -103,6 +106,13 @@ namespace OnlineLearningSystem
                     ValidateAudience = false,
                     ClockSkew = TimeSpan.Zero
                 };
+            });
+
+            var mailKitOptions = Configuration.GetSection("Email").Get<MailKitOptions>();
+
+            services.AddMailKit(config =>
+            {
+                config.UseMailKit(mailKitOptions);
             });
 
             services.AddMvc();

@@ -16,6 +16,8 @@ using OnlineLearningSystem.Services;
 using OnlineLearningSystem.Dtos;
 using System.Net;
 using Microsoft.AspNetCore.Authorization;
+using NETCore.MailKit.Core;
+using System.IO;
 
 namespace OnlineLearningSystem.Controllers
 {
@@ -27,15 +29,19 @@ namespace OnlineLearningSystem.Controllers
         private SignInManager<ApplicationUser> _singInManager;
         private readonly ApplicationSettings _appSettings;
         private ICourseRepository _courseRepository;
+        private IEmailService _emailService;
+
         public ApplicationUserController(UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             IOptions<ApplicationSettings> appSettings,
-            ICourseRepository courseRepository)
+            ICourseRepository courseRepository,
+            IEmailService emailservice)
         {
             _userManager = userManager;
             _singInManager = signInManager;
             _appSettings = appSettings.Value;
             _courseRepository = courseRepository;
+            _emailService = emailservice;
         }
 
         [HttpPost]
@@ -55,6 +61,12 @@ namespace OnlineLearningSystem.Controllers
             {
                 var result = await _userManager.CreateAsync(applicationUser, model.Password);
                 await _userManager.AddToRoleAsync(applicationUser, model.Role);
+                    var token = await _userManager.GenerateEmailConfirmationTokenAsync(applicationUser);
+                //Build the confirmation link
+                var confirmationLink = Url.Action("ConfirmEmail", "ApplicationUser",
+                    new { userId = applicationUser.Id, token = token }, Request.Scheme);
+                    await _emailService.SendAsync(model.Email, "Email Verification",
+                        $"<a href=\"{confirmationLink}\">Verify Email</a>", true);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -64,6 +76,24 @@ namespace OnlineLearningSystem.Controllers
             }
         } 
         
+        public async Task<String> ConfirmEmail(string userId, string token)
+        {
+            if (userId == null) 
+                return "Something went wrong";
+
+            var user = await _userManager.FindByIdAsync(userId);
+
+            if (user == null) 
+                return "Something went wrong";
+
+            var result = await _userManager.ConfirmEmailAsync(user, token);
+
+            if (result.Succeeded)
+                return "Your Email Has Been Confirmed";
+            else
+                return "Something went wrong!";
+        }
+
         [HttpPost]
         [Route("mentor")]
         [Authorize(Roles = "Admin", AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
@@ -96,31 +126,40 @@ namespace OnlineLearningSystem.Controllers
         //POST : /api/ApplicationUser/login
         public async Task<IActionResult> Login(LoginModel model)
         {
-
             var user = await _userManager.FindByNameAsync(model.UserName);
-            if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
-            {
-                //Get role assigned to the user
-                var role = await _userManager.GetRolesAsync(user);
-                IdentityOptions _options = new IdentityOptions();
 
-                var tokenDescriptor = new SecurityTokenDescriptor
+            if(user == null)
+                return BadRequest(new { message = "Username or password is incorrect." });
+
+            if (await _userManager.IsEmailConfirmedAsync(user))
+            {
+                if (await _userManager.CheckPasswordAsync(user, model.Password))
                 {
-                    Subject = new ClaimsIdentity(new Claim[]
+                    //Get role assigned to the user
+                    var role = await _userManager.GetRolesAsync(user);
+                    IdentityOptions _options = new IdentityOptions();
+
+                    var tokenDescriptor = new SecurityTokenDescriptor
                     {
+                        Subject = new ClaimsIdentity(new Claim[]
+                        {
                         new Claim("UserID",user.Id.ToString()),
                         new Claim(_options.ClaimsIdentity.RoleClaimType,role.FirstOrDefault()),
-                    }),
-                    Expires = DateTime.UtcNow.AddDays(1),
-                    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_appSettings.JWT_Secret)), SecurityAlgorithms.HmacSha256Signature)
-                };
-                var tokenHandler = new JwtSecurityTokenHandler();
-                var securityToken = tokenHandler.CreateToken(tokenDescriptor);
-                var token = tokenHandler.WriteToken(securityToken);
-                return Ok(new { token });
-            }
+                        }),
+                        Expires = DateTime.UtcNow.AddDays(1),
+                        SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_appSettings.JWT_Secret)), SecurityAlgorithms.HmacSha256Signature)
+                    };
+                    var tokenHandler = new JwtSecurityTokenHandler();
+                    var securityToken = tokenHandler.CreateToken(tokenDescriptor);
+                    var token = tokenHandler.WriteToken(securityToken);
+                    return Ok(new { token });
+                }
             else
                 return BadRequest(new { message = "Username or password is incorrect." });
+            }
+            else
+                return BadRequest(new { message = "Email is not confirmed"});
+
         }
 
         [HttpGet]
