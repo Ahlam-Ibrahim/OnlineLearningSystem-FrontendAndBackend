@@ -15,7 +15,8 @@
 
 <main class="login-body" data-vide-bg="assets/img/login-bg.mp4">
 <!-- Login Admin -->
-<form class="form-default" action="login-bg.mp4" method="POST">
+<form [formGroup]="service.formModel" autocomplete="off" (submit)="onSubmit()" 
+      class="form-default" action="login-bg.mp4" method="POST">
     
     <div class="login-form">
         <!-- logo-login -->
@@ -23,25 +24,36 @@
             <a href="index.html"><img src="assets/img/logo/loder.png" alt=""></a>
         </div>
         <h2>Registration Here</h2>
-
-        <div class="form-input">
-            <label for="name">Full name</label>
-            <input  type="text" name="name" placeholder="Full name">
-        </div>
-        <div class="form-input">
-            <label for="name">Email Address</label>
-            <input type="email" name="email" placeholder="Email Address">
-        </div>
-        <div class="form-input">
-            <label for="name">Password</label>
-            <input type="password" name="password" placeholder="Password">
-        </div>
-        <div class="form-input">
-            <label for="name">Confirm Password</label>
-            <input type="password" name="password" placeholder="Confirm Password">
-        </div>
+        <div class="form-input required">
+            <label>Username</label>
+            <input class="form-control" formControlName="UserName">
+            <label class="text-danger" *ngIf="service.formModel.get('UserName').touched && service.formModel.get('UserName').errors?.required">This field is mandatory.</label>
+          </div>
+          <div class="form-input required">
+            <label>Full Name</label>
+            <input class="form-control" formControlName="FullName">
+          </div>
+          <div class="form-input required">
+            <label>Email</label>
+            <input class="form-control" formControlName="Email">
+            <label class="text-danger" *ngIf="service.formModel.get('Email').touched && service.formModel.get('Email').errors?.email">Invalid email address.</label>
+          </div>
+        <div formGroupName="Passwords">
+            <div class="form-input required">
+              <label>Password</label>
+              <input type="password" class="form-control" formControlName="Password">
+              <label class="text-danger" *ngIf="service.formModel.get('Passwords.Password').touched && service.formModel.get('Passwords.Password').errors?.required">This field is mandatory.</label>
+              <label class="text-danger" *ngIf="service.formModel.get('Passwords.Password').touched && service.formModel.get('Passwords.Password').errors?.minlength">Minimum 4 characters required.</label>
+            </div>
+            <div class="form-input required">
+              <label>Confirm Password</label>
+              <input type="password" class="form-control" formControlName="ConfirmPassword">
+              <label class="text-danger" *ngIf="service.formModel.get('Passwords.ConfirmPassword').touched && service.formModel.get('Passwords.ConfirmPassword').errors?.required">This field is mandatory.</label>
+              <label class="text-danger" *ngIf="service.formModel.get('Passwords.ConfirmPassword').touched && service.formModel.get('Passwords.ConfirmPassword').errors?.passwordMismatch">Confirm Password does not match.</label>
+            </div>
+          </div>
         <div class="form-input pt-30">
-            <input type="submit" name="submit" value="Registration">
+            <button type="submit" class="btn btn-lg btn-block" [disabled]="!service.formModel.valid">Sign Up</button>
         </div>
         <!-- Forget Password -->
         <a href="login" class="registration">login</a>

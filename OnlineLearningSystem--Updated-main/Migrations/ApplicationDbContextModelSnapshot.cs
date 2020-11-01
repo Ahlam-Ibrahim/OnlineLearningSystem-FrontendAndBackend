@@ -48,22 +48,22 @@ namespace OnlineLearningSystem.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "68cfcf29-3b84-46a9-939b-cf80a957c8ad",
-                            ConcurrencyStamp = "bf3a67cd-ba49-4895-8685-6646e1410cb9",
+                            Id = "371f211a-dbc9-4d65-a4c5-88a09b836b9c",
+                            ConcurrencyStamp = "ecfacc31-f6c1-49ea-a949-f4382b7ee479",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "8a61ab4b-7395-4612-b8a3-c8c88b882f79",
-                            ConcurrencyStamp = "2a012915-6a9e-463a-9a44-7bb11493a2be",
+                            Id = "4d707f06-eb69-40b4-8680-93d6ee298320",
+                            ConcurrencyStamp = "95336fe7-75ba-4d37-8b22-130588ff8706",
                             Name = "Mentor",
                             NormalizedName = "MENTOR"
                         },
                         new
                         {
-                            Id = "7761665a-a39d-405d-9a72-a3de629da43f",
-                            ConcurrencyStamp = "af9b366d-28da-48f7-b4e7-b4fd97d2db9a",
+                            Id = "96248631-58cd-4c00-bb0d-4e63aa6168fc",
+                            ConcurrencyStamp = "4ce0201b-1be3-4cf7-a14e-42da661b9f52",
                             Name = "Student",
                             NormalizedName = "STUDENT"
                         });
@@ -227,8 +227,8 @@ namespace OnlineLearningSystem.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "f7bc401e-8fee-4065-8f00-a46fce51b5d9",
-                            RoleId = "68cfcf29-3b84-46a9-939b-cf80a957c8ad"
+                            UserId = "5cf6f7f3-74e2-4878-9b87-22640311f5c4",
+                            RoleId = "371f211a-dbc9-4d65-a4c5-88a09b836b9c"
                         });
                 });
 
@@ -399,17 +399,17 @@ namespace OnlineLearningSystem.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "f7bc401e-8fee-4065-8f00-a46fce51b5d9",
+                            Id = "5cf6f7f3-74e2-4878-9b87-22640311f5c4",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "fb4eb405-a3b3-4c91-b4bb-a722081f8a25",
+                            ConcurrencyStamp = "c81efb97-64fa-40f9-b4f8-5fd17fac0c46",
                             Email = "Admin@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEJFoVBtGCbFVDjJYxnwizwVXq4EFKE5aSzK80mqssPbJIbJgj8XXWLSyiqty8y01YA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEOQb7k2pPhsVBrvPZZLRko86vzm+mmQzK0OIiHktIoL2adAjG0eJWl65f7sNN+G+JQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "467c2588-7b77-4be3-9b4a-3877cd780eeb",
+                            SecurityStamp = "6a1e9cd4-53b4-4010-b2a6-b07283b789d7",
                             TwoFactorEnabled = false,
                             UserName = "Admin",
                             FullName = "Admin"

@@ -1,6 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UserComponent } from './user/user.component';
@@ -16,6 +19,7 @@ import { StatusComponent } from './category/course/status/status.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { YouTubePlayerModule } from "@angular/youtube-player";
+import { UserService } from './shared/user.service';
 
 @NgModule({
   declarations: [
@@ -37,9 +41,12 @@ import { YouTubePlayerModule } from "@angular/youtube-player";
     BrowserModule,
     AppRoutingModule,
     YouTubePlayerModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule,   
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

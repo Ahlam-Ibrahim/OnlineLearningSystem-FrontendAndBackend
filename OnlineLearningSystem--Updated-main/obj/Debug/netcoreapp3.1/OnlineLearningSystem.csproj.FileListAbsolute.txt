@@ -699,3 +699,7 @@ C:\Users\Lenov\source\repos\EmailConfirmation\OnlineLearningSystem--Updated-main
 C:\Users\Lenov\source\repos\EmailConfirmation\OnlineLearningSystem--Updated-main\bin\Debug\netcoreapp3.1\MimeKit.dll
 C:\Users\Lenov\source\repos\EmailConfirmation\OnlineLearningSystem--Updated-main\bin\Debug\netcoreapp3.1\NETCore.MailKit.dll
 C:\Users\Lenov\source\repos\EmailConfirmation\OnlineLearningSystem--Updated-main\bin\Debug\netcoreapp3.1\BouncyCastle.Crypto.dll
+C:\Users\Lenov\source\repos\Integeration\OnlineLearningSystem--Updated-main\bin\Debug\netcoreapp3.1\MailKit.dll
+C:\Users\Lenov\source\repos\Integeration\OnlineLearningSystem--Updated-main\bin\Debug\netcoreapp3.1\MimeKit.dll
+C:\Users\Lenov\source\repos\Integeration\OnlineLearningSystem--Updated-main\bin\Debug\netcoreapp3.1\NETCore.MailKit.dll
+C:\Users\Lenov\source\repos\Integeration\OnlineLearningSystem--Updated-main\bin\Debug\netcoreapp3.1\BouncyCastle.Crypto.dll

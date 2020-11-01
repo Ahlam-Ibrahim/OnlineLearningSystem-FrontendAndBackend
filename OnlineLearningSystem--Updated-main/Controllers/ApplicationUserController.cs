@@ -60,14 +60,18 @@ namespace OnlineLearningSystem.Controllers
             try
             {
                 var result = await _userManager.CreateAsync(applicationUser, model.Password);
-                await _userManager.AddToRoleAsync(applicationUser, model.Role);
+                if (result.Succeeded)
+                {
+                    await _userManager.AddToRoleAsync(applicationUser, model.Role);
                     var token = await _userManager.GenerateEmailConfirmationTokenAsync(applicationUser);
-                //Build the confirmation link
-                var confirmationLink = Url.Action("ConfirmEmail", "ApplicationUser",
-                    new { userId = applicationUser.Id, token = token }, Request.Scheme);
+                    //Build the confirmation link
+                    var confirmationLink = Url.Action("ConfirmEmail", "ApplicationUser",
+                        new { userId = applicationUser.Id, token = token }, Request.Scheme);
                     await _emailService.SendAsync(model.Email, "Email Verification",
                         $"<a href=\"{confirmationLink}\">Verify Email</a>", true);
+                }
                 return Ok(result);
+
             }
             catch (Exception ex)
             {

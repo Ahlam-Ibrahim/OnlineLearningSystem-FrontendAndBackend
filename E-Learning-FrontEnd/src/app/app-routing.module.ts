@@ -11,6 +11,9 @@ import { StudentComponent } from './user/student/student.component';
 
 const routes: Routes = [
   {
+    path:'student', component:StudentComponent
+  },
+  {
     path:'category', component:CategoryComponent
   },
   {
