@@ -135,7 +135,9 @@ namespace OnlineLearningSystem.Controllers
             if(user == null)
                 return BadRequest(new { message = "Username or password is incorrect." });
 
-            if (await _userManager.IsEmailConfirmedAsync(user))
+            if (await _userManager.IsEmailConfirmedAsync(user)
+                    || await _userManager.IsInRoleAsync(user, "Admin")
+                    || await _userManager.IsInRoleAsync(user, "Mentor"))
             {
                 if (await _userManager.CheckPasswordAsync(user, model.Password))
                 {
@@ -150,7 +152,7 @@ namespace OnlineLearningSystem.Controllers
                         new Claim("UserID",user.Id.ToString()),
                         new Claim(_options.ClaimsIdentity.RoleClaimType,role.FirstOrDefault()),
                         }),
-                        Expires = DateTime.UtcNow.AddDays(1),
+                        Expires = DateTime.UtcNow.AddHours(12),
                         SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_appSettings.JWT_Secret)), SecurityAlgorithms.HmacSha256Signature)
                     };
                     var tokenHandler = new JwtSecurityTokenHandler();

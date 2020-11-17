@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "e/JbDpGD5449+5ZejGADkM+bX/HXUH18w55/m/HNFrYe1XyMznV9PQChQ7dC7cV+4pbhoOPhppwov8361MefRQ==",
+  "dgSpecHash": "Cnl4pYmaVCgwdn2/sMYKfVERJ4PYBx/+cpIKWpSvMKeNRS+A0r7R4XCrMRpE/EJtW41oyxzqgUO1HGOODeTVUA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Lenov\\source\\repos\\Integeration\\OnlineLearningSystem--Updated-main\\OnlineLearningSystem.csproj",
+  "projectFilePath": "C:\\Users\\Lenov\\Desktop\\OnlineLearningSystem-FrontendAndBackend-main\\OnlineLearningSystem--Updated-main\\OnlineLearningSystem.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Lenov\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Lenov\\.nuget\\packages\\mailkit\\2.6.0\\mailkit.2.6.0.nupkg.sha512",
